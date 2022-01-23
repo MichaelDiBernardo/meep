@@ -1,3 +1,4 @@
 - Upon logging in, user has a property that records whether you have journaled today.
+    - Resume tutorial for django-rest here: https://www.django-rest-framework.org/tutorial/2-requests-and-responses/
 - Record a journal entry.
 - Once a <PERIOD>, compile the results of the week's speech analyses and create a report. 
