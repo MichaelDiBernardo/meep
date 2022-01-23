@@ -1,0 +1,3 @@
+- Upon logging in, user has a property that records whether you have journaled today.
+- Record a journal entry.
+- Once a <PERIOD>, compile the results of the week's speech analyses and create a report. 
