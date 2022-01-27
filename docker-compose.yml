@@ -4,7 +4,7 @@ services:
   db:
     image: postgres:14.1
     volumes:
-      - ./data/db:/var/lib/postgresql/data
+      - meep_db_data:/var/lib/postgresql/data
     environment:
       - POSTGRES_NAME=postgres
       - POSTGRES_USER=postgres
@@ -22,3 +22,5 @@ services:
       - POSTGRES_PASSWORD=postgres
     depends_on:
       - db
+volumes:
+  meep_db_data:
