@@ -1,7 +1,16 @@
 from django.http import HttpResponse
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
-# Create your views here.
+from core.serializers import TestSerializer
 
 
-def hello(request):
-    return HttpResponse("Hi! :) ")
+class Spoof:
+    def __init__(self):
+        self.spaghetti = "cotto"
+
+
+class HelloView(APIView):
+    def get(self, request, format=None):
+        serializer = TestSerializer(Spoof())
+        return Response(serializer.data)
