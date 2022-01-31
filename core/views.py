@@ -1,16 +1,17 @@
 from django.http import HttpResponse
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from core.serializers import TestSerializer
+from core.services import JournalEntryRepo
+
+from .commands import CreateJournalEntryCommand
+from .serializers import JournalEntrySerializer
 
 
-class Spoof:
-    def __init__(self):
-        self.spaghetti = "cotto"
-
-
-class HelloView(APIView):
-    def get(self, request, format=None):
-        serializer = TestSerializer(Spoof())
-        return Response(serializer.data)
+class JournalEntryView(APIView):
+    def post(self, request):
+        cmd = CreateJournalEntryCommand(journal_entry_repo=JournalEntryRepo())
+        entry = cmd.run(request.user)
+        serializer = JournalEntrySerializer(entry)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
